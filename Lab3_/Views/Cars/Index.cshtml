@@ -1,0 +1,62 @@
+﻿@model Lab3_.ViewModels.CarsViewModel
+@{
+    ViewData["Title"] = "Машины";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var mark = Model.CarViewModel.Mark;
+}
+<h2>Машины</h2>
+
+@using (Html.BeginForm("Index", "Cars", FormMethod.Post))
+{
+    <fieldset>
+        Марка: @Html.TextBox("Mark", Model.CarViewModel.Mark)
+        <input type="submit" value="Найти"/>
+    </fieldset>
+}
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarViewModel.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarViewModel.Organization)
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@Model.CarViewModel.SortViewModel.VolumeSort">
+                Максимальный объем
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@Model.CarViewModel.SortViewModel.WeightSort">
+                Максимальный вес
+            </a>
+
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Cars)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarryingVolume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarryingWeight)
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index"
+           page-url-Mark="@mark"
+           page-url-sortOrder="@(Model.CarViewModel.SortViewModel.CurrentState)">
+</page-link>

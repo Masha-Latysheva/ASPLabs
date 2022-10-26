@@ -1,0 +1,65 @@
+﻿@model Lab3_.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Все данные";
+}
+<table border="0" cellspacing="100">
+    <tr>
+        <td>
+            <table border="1">
+                <caption>Водители</caption>
+                <tr>
+                    <th>#</th>
+                    <th>Паспорт</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                </tr>
+                @foreach (var driver in Model.Drivers)
+                {
+                    <tr>
+                        <td>@driver.Id</td>
+                        <td>@driver.Passport</td>
+                        <td>@driver.FirstName</td>
+                        <td>@driver.LastName</td>
+                    </tr>
+                }
+            </table>
+        </td>
+
+        <td style="padding-left: 30px">
+            <table border="1">
+                <caption>Организации</caption>
+                <tr>
+                    <th>#</th>
+                    <th>Наименование</th>
+                </tr>
+                @foreach (var organization in Model.Organizations)
+                {
+                    <tr>
+                        <td>@organization.Id</td>
+                        <td>@organization.Name</td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
+<table border="1">
+    <caption>Машины</caption>
+    <tr>
+        <th>#</th>
+        <th>Марка</th>
+        <th>Максимальный вес</th>
+        <th>Максимальный объем</th>
+        <th>Организация</th>
+    </tr>
+    @foreach (var operation in Model.Cars)
+    {
+        <tr>
+            <td>@operation.Id</td>
+            <td>@operation.Mark</td>
+            <td>@operation.CarryingWeight</td>
+            <td>@operation.CarryingVolume</td>
+            <td>@operation.Organization</td>
+        </tr>
+    }
+</table>
