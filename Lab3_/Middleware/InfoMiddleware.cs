@@ -38,7 +38,7 @@ namespace Lab3_.Middleware
                         : "no");
 
                 str += "</br>" + "Client ip: " + remoteIpAddress;
-
+                str += "<br><button onclick=\"location.href='/';\">Back</button>";
                 await httpContext.Response.WriteAsync(str);
             }
 
